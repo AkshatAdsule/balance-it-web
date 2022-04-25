@@ -1,3 +1,3 @@
 # balance-it-web
 
-[![Build Status](https://app.travis-ci.com/AkshatAdsule/balance-it-web.svg?branch=main)](https://app.travis-ci.com/AkshatAdsule/balance-it-web)
+[![Deploy](https://github.com/AkshatAdsule/balance-it-web/actions/workflows/deploy.yml/badge.svg)](https://github.com/AkshatAdsule/balance-it-web/actions/workflows/deploy.yml)
