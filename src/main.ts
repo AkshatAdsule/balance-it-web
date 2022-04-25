@@ -39,9 +39,9 @@ window.addEventListener("deviceorientation", async (event: any) => {
   gamma_p.innerText = `gamma: ${gamma}`;
 
   await set(session, {
-    alpha: alpha,
-    beta: beta,
-    gamma: gamma,
+    // alpha: alpha,
+    orientation: beta,
+    // gamma: gamma,
     isClientConnected: true
   });
 }, true);
