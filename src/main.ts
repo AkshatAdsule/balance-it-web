@@ -29,10 +29,10 @@ if (sessionId) {
 
   window.addEventListener(
     "deviceorientation",
-    async (event: any) => {
-      let alpha = Math.round(event.alpha);
-      let beta = Math.round(event.beta);
-      let gamma = Math.round(event.gamma);
+    async (event: DeviceOrientationEvent) => {
+      let alpha = Math.round(event.alpha!);
+      let beta = Math.round(event.beta!);
+      let gamma = Math.round(event.gamma!);
       alpha_p.innerText = `alpha: ${alpha}`;
       beta_p.innerText = `beta: ${beta}`;
       gamma_p.innerText = `gamma: ${gamma}`;
