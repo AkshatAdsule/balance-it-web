@@ -30,7 +30,7 @@ let alpha_p = document.getElementById("alpha")!;
 let beta_p = document.getElementById("beta")!;
 let gamma_p = document.getElementById("gamma")!;
 
-set(session, {
+await set(session, {
   isClientConnected: true
 });
 
@@ -46,5 +46,6 @@ window.addEventListener("deviceorientation", async (event: any) => {
     // alpha: alpha,
     orientation: beta,
     // gamma: gamma,
+    isClientConnected: true
   });
 }, true);
