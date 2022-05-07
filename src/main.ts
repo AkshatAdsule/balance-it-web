@@ -1,11 +1,22 @@
 import "./style.css";
 
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set } from "firebase/database";
+import {
+  DatabaseReference,
+  get,
+  getDatabase,
+  ref,
+  update,
+} from "firebase/database";
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const sessionId = urlParams.get("session");
+
+async function checkIfDocumentExists(ref: DatabaseReference): Promise<boolean> {
+  let data = await get(ref);
+  return data.exists();
+}
 
 if (sessionId) {
   const firebaseConfig = {
@@ -27,25 +38,35 @@ if (sessionId) {
   let beta_p = document.getElementById("beta")!;
   let gamma_p = document.getElementById("gamma")!;
 
+  // (async () => {
+  //   await update(session, {
+  //     isClientConnected: true,
+  //   });
+  // })();
+
   window.addEventListener(
     "deviceorientation",
     async (event: DeviceOrientationEvent) => {
-      let alpha = Math.round(event.alpha!);
-      let beta = Math.round(event.beta!);
-      let gamma = Math.round(event.gamma!);
-      alpha_p.innerText = `alpha: ${alpha}`;
-      beta_p.innerText = `beta: ${beta}`;
-      gamma_p.innerText = `gamma: ${gamma}`;
-
-      await set(session, {
-        // alpha: alpha,
-        orientation: beta,
-        // gamma: gamma,
-        isClientConnected: true,
-      });
+      if (await checkIfDocumentExists(session)) {
+        let alpha = Math.round(event.alpha!);
+        let beta = Math.round(event.beta!);
+        let gamma = Math.round(event.gamma!);
+        alpha_p.innerText = `alpha: ${alpha}`;
+        beta_p.innerText = `beta: ${beta}`;
+        gamma_p.innerText = `gamma: ${gamma}`;
+        await update(session, {
+          orientation: beta,
+          isClientConnected: true,
+        });
+      } else {
+        alpha_p.innerText = "";
+        beta_p.innerText = "";
+        gamma_p.innerText = "";
+        document.getElementById("log")!.innerText = "Session ended";
+      }
     },
     true
   );
 } else {
-  document.getElementById("log")!.innerText = "Session ID not provided!"
+  document.getElementById("log")!.innerText = "Session ID not provided!";
 }
