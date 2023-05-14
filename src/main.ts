@@ -24,15 +24,14 @@ async function checkIfDocumentExists(ref: DatabaseReference): Promise<boolean> {
 
 if (sessionId) {
   const firebaseConfig = {
-    apiKey: "AIzaSyARpycPDErgpyxxJ3bR1cyGNm1Ix9KTemU",
-    authDomain: "balance-it-hhs.firebaseapp.com",
-    databaseURL: "https://balance-it-hhs-default-rtdb.firebaseio.com",
-    projectId: "balance-it-hhs",
-    storageBucket: "balance-it-hhs.appspot.com",
-    messagingSenderId: "1034280146144",
-    appId: "1:1034280146144:web:ef8d739c3fd60476132c85",
+    apiKey: "AIzaSyAghrfawdJkc-DrEXhYwZwGB1MyXIRm0Ok",
+    authDomain: "mindly-app.firebaseapp.com",
+    projectId: "mindly-app",
+    storageBucket: "mindly-app.appspot.com",
+    messagingSenderId: "121121941511",
+    appId: "1:121121941511:web:242ba515e50e9745e222a2",
+    measurementId: "G-T80WFVVBJ8",
   };
-
   var app = initializeApp(firebaseConfig);
   var rtdb = getDatabase(app);
 
@@ -77,7 +76,7 @@ function getPerms() {
       .requestPermission()
       .then((permissionState: any) => {
         if (permissionState === "granted") {
-          console.log("registered ios orientation listener")
+          console.log("registered ios orientation listener");
           window.addEventListener(
             "deviceorientation",
             async (event: DeviceOrientationEvent) => {
